@@ -8,5 +8,27 @@
 </head>
 <body>
     <h1>Velkommen til Nginx Guiden!</h1>
+    <br>
+    <br>
+    <h2>Steg 1: Ubuntu Setup</h2>
+    <br>
+    <p>Først og fremst ha en Ubuntu device/virituel maskin og pass på så maskinen er thin provision og bruker
+        Ubuntu Content ISO Library. Deretter skriver du inn informasjonen du blir bedt om av maskinen etter å ha startet 
+        den(feks subnet og brukernavn). Når du er inne så begynner det neste steget, Nginx Setup.
+    </p>
+    <br>
+    <br>
+    <h2>Steg 2: Nginx Setup</h2>
+    <br>
+    <p>Først må Nginx lastes ned, dette gjøres ved å skrive "sudo apt install nginx"(det anbefales også å 
+        deretter skrive "sudo apt update" og "sudo apt upgrade"). Nå er Nginx nedlastet i din /etc/nginx mappe.
+        For å få sin nettside til å bli lest av nginx så må du gå inn på nginx sin mappe og inn på sites-available mappen.
+        Denne mappen inneholder sidene nginx leser, inne på denne så bruker du "sudo nano" på default filen.
+        Her finner du en linje hvor det står "root /var/www/html;", det er mappen Nginx leser. Bytt ut der det står html med
+        navnet på mappen til siden din.</p>
+    <br>
+    <p>Nå må du passe på så mappen du skrev inn navnet på er i /var/www. Da flytter du mappen dit så vil ingenting endre seg på
+        siden din. Dette er fordi du må restarte Nginx ved å skrive inn "sudo systemctl restart nginx", dette må gjøres hver gang
+        du vil at endringene du har gjort skal ta effekt.</p>
 </body>
 </html>
