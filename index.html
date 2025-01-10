@@ -10,25 +10,123 @@
     <h1>Velkommen til Nginx Guiden!</h1>
     <br>
     <br>
-    <h2>Steg 1: Ubuntu Setup</h2>
+    <h2>Steg 1: Skapelse av virtuell maskin</h2>
     <br>
-    <p>Først og fremst ha en Ubuntu device/virituel maskin og pass på så maskinen er thin provision og bruker
-        Ubuntu Content ISO Library. Deretter skriver du inn informasjonen du blir bedt om av maskinen etter å ha startet 
-        den(feks subnet og brukernavn). Når du er inne så begynner det neste steget, Nginx Setup.
+
+    <p>Først og fremst sett opp en Ubuntu device/virituel maskin på vcenter.</p>
+    <img src="Screenshot 2025-01-10 091225.png" alt="">
+    <br>
+
+    <p>Trykk på actions knappen og velg "New Virtual Machine" og deretter velg "Create a new virtual machine".</p>
+    <img src="Screenshot 2025-01-10 091300.png" alt="">
+    <img src="Screenshot 2025-01-10 091353.png" alt="">
+    <br>
+
+    <p>Velg mappen du vil ha din virtuelle maskin i og velg din bruker på neste menyen.</p>
+    <img src="Screenshot 2025-01-10 091408.png" alt="">
+    <img src="Screenshot 2025-01-10 091415.png" alt="">
+    <br>
+
+    <p>Velg disken maskinen blir largret på og dens kompatibilitet.</p>
+    <img src="Screenshot 2025-01-10 091422.png" alt="">
+    <img src="Screenshot 2025-01-10 091428.png" alt="">
+    <br>
+
+    <p>Pass på så du har Ubuntu 64-bit som maskinens operativ system.</p>
+    <img src="Screenshot 2025-01-10 091440.png" alt="">
+    <br>
+
+    <p>Innstillingene på "Customize Hardware" seksjonen skal vi la være utenom to ting. Gå inn på "New Hard disk"
+        og bytt "Disk Profisioning" fra "Thick Provision Lazy Zeorod" til "Thin Provision". På "New CD/DVD Drive",
+        bytt fra "Client Devise" til "Content Library ISO File", velg "ubuntu-22.04.1-live-server-amd64" i vinduet som påner opp>
+        og skru på "Connect At Power On".
     </p>
+    <img src="Screenshot 2025-01-10 091554.png" alt="">
     <br>
+
+    <p>Når du er på denne siden, trykk "Finish"</p>
+    <img src="Screenshot 2025-01-10 091600.png" alt="">
     <br>
-    <h2>Steg 2: Nginx Setup</h2>
+
+    <h2>Steg 2: Ubuntu Oppsett</h2>
     <br>
-    <p>Først må Nginx lastes ned, dette gjøres ved å skrive "sudo apt install nginx"(det anbefales også å 
-        deretter skrive "sudo apt update" og "sudo apt upgrade"). Nå er Nginx nedlastet i din /etc/nginx mappe.
-        For å få sin nettside til å bli lest av nginx så må du gå inn på nginx sin mappe og inn på sites-available mappen.
-        Denne mappen inneholder sidene nginx leser, inne på denne så bruker du "sudo nano" på default filen.
-        Her finner du en linje hvor det står "root /var/www/html;", det er mappen Nginx leser. Bytt ut der det står html med
-        navnet på mappen til siden din.</p>
+
+    <p>Nå som den virtuelle maskinen har blitt laget, kan vi begynne å sette opp Ubuntu. Først trykk på den grønne start knappen
+        øverst på midten av skjermen for å slå på den virtuelle maskinen. For å åpne den virtuelle maskinen, trykk på skjermen
+        som slår seg på.
+    </p>
+    <img src="Screenshot 2025-01-10 091619.png" alt="">
+    <img src="Screenshot 2025-01-10 091626.png" alt="">
     <br>
-    <p>Nå må du passe på så mappen du skrev inn navnet på er i /var/www. Da flytter du mappen dit så vil ingenting endre seg på
-        siden din. Dette er fordi du må restarte Nginx ved å skrive inn "sudo systemctl restart nginx", dette må gjøres hver gang
-        du vil at endringene du har gjort skal ta effekt.</p>
+
+    <p>Nå må vi på denne menyen velge "Try or Install Ubuntu Server". Deretter velg språket du vil bruke, jeg valgte "English"
+        og resten av guiden bruker dette.
+    </p>
+    <img src="Screenshot 2025-01-10 091634.png" alt="">
+    <img src="Screenshot 2025-01-10 091806.png" alt="">
+    <br>
+
+    <p>Her så velger du språket til tastaturet ditt, og deretter så velger du bare "Ubuntu Server"(ikke minimized).
+
+    </p>
+    <img src="Screenshot 2025-01-10 091847.png" alt="">
+    <img src="Screenshot 2025-01-10 091856.png" alt="">
+    <br>
+
+    <p>Nå må du sette inn ipv4-en til den virtuelle maskinen. På bildene under er det markert i lysegrått hva du skal velge.
+        Så må du skrive inn addressene til den virtuelle maskinen. Hvis du setter opp maskin til Bleiker Videregående skiver
+        du alt helt likt som på det fjære bildet, bare du bytter ut tallene markert med rødt med din bruker sitt nummer, og
+        blått med nummeret du vil gi til maskinen. Nå kan du trykke på "save" og gå videre.
+    </p>
+    <img src="Screenshot 2025-01-10 091906.png" alt="">
+    <img src="Screenshot 2025-01-10 091916.png" alt="">
+    <img src="Screenshot 2025-01-10 091925.png" alt="">
+    <img src="Screenshot 2025-01-10 092125.png" alt="">
+    <br>
+
+    <p>De følgene sidene krever ikke at du endrer på noen ting, det anbefales at du velger "Update to the new installer".
+        Om du ikke velger det vil du mest sannsynlig ikke støtte på problemer, men jeg har ikke testet det selv. På det
+        siste av bildene vises menyen hvor du skal trykke på "Continue", selv om "No" er standard valget. Noter at mellom
+        et par av disse menyene må maskinen laste litt.
+    </p>
+    <img src="Screenshot 2025-01-10 092134.png" alt="">
+    <img src="Screenshot 2025-01-10 092140.png" alt="">
+    <img src="Screenshot 2025-01-10 092148.png" alt="">
+    <img src="Screenshot 2025-01-10 092255.png" alt="">
+    <img src="Screenshot 2025-01-10 092302.png" alt="">
+    <img src="Screenshot 2025-01-10 092309.png" alt="">
+    <br>
+
+    <p>Nå bør du ha blitt sendt til denne menyen. Her trenger du ikke å gjøre mere enn å skrive ditt navn, hva du vil bli
+        referert til som, maskinens navn og passordet ditt.
+    </p>
+    <img src="Screenshot 2025-01-10 092406.png" alt="">
+    <br>
+
+    <p>På de følgene menyene trykker du are videre siden ingen av disse ekstra tingene er nødvendig.
+        Etter så vil maskinen laste i rundt 5-10 minutter, så gå og ta deg noe godt å drikke mens  du venter.
+    </p>
+    <img src="Screenshot 2025-01-10 092511.png" alt="">
+    <img src="Screenshot 2025-01-10 092524.png" alt="">
+    <img src="Screenshot 2025-01-10 092533.png" alt="">
+    <br>
+
+    <p>Her så trykker du "reboot now", så vil din maskin omstarte. Når den skrur seg på igjen vil du etter et par sekunder
+        se det som vises på det andre bildet under, trykk enter så er maskinen din klar for bruk etter litt mer lasting.
+        Dette bør se ut som det du ser på det tredje bildet under.
+    </p>
+    <img src="Screenshot 2025-01-10 093139.png" alt="">
+    <img src="Screenshot 2025-01-10 093204.png" alt="">
+    <img src="Screenshot 2025-01-10 094622.png" alt="">
+    <br>
+
+    <h2>Steg 3: Nginx Oppsett</h2>
+    <br>
+
+    <p></p>
+
+    <br>
+    <h2>Valgfritt Steg: Github Importering</h2>
+    <br>
 </body>
 </html>
