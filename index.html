@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Enkel Guide til Nginx</title>
+    <title>Enkel Guide til NginX</title>
 </head>
 <body>
-    <h1>Velkommen til Nginx Guiden!</h1>
+    <h1>Velkommen til NginX Guiden!</h1>
     <br>
     <br>
     <h2>Steg 1: Skapelse av virtuell maskin</h2>
@@ -22,7 +22,7 @@
     <img src="Screenshot 2025-01-10 091353.png" alt="">
     <br>
 
-    <p>Velg mappen du vil ha din virtuelle maskin i og velg din bruker på neste menyen.</p>
+    <p>Velg navnet til din virtuelle maskin og velg din bruker på neste menyen.</p>
     <img src="Screenshot 2025-01-10 091408.png" alt="">
     <img src="Screenshot 2025-01-10 091415.png" alt="">
     <br>
@@ -120,13 +120,88 @@
     <img src="Screenshot 2025-01-10 094622.png" alt="">
     <br>
 
-    <h2>Steg 3: Nginx Oppsett</h2>
+    <h2>Steg 3: NginX Oppsett</h2>
     <br>
 
-    <p></p>
-
+    <p>Nå for å sette opp NginX så må vi laste det ned først. For å gjøre det må man skrive "sudo apt install nginx".
+        Noter at du må skrive inn passord nesten hver gang du skriver en kommando som starter med "sudo".
+    </p>
+    <img src="Screenshot 2025-01-10 095014.png" alt="">
     <br>
+
+    <p>Nå må du komme deg til mappen som NginX leser og putte filene til nettsiden du har laget inn der.
+        For å gjøre dette må du komme deg til "/var/www/html" og forleby er du i "*" eller som folk kaller
+        det root. For å komme seg til en annen mappe må du skrive "cd" oppfulgt med hvor du skal som vist i bildet under.
+        Dette tar oss til "/" eller som folk kaller det home mappen. Når du er inne på den kan du skrive "cd /var/www/html"
+        for å komme deg til mappen som vist i det andre bildet under. Her putter du inn alle filene til nettsiden din.
+        Det anbefales at du bruker GitHub for å flytte filene dine fra et annet sted, hvordan du gjør dette forklares senere.
+        Det er bare et problem, du vil mest sannsynlig få en feil melding som sier at du ikke har tilgang.
+    </p>
+    <img src="Screenshot 2025-01-10 095550.png" alt="">
+    <img src="Screenshot 2025-01-10 095703.png" alt="">
+    <br>
+
+    <p>For å få tilgang til mappen må du gi deg selv tilgang. For å gjøre dette skriver du det som står under bare at du
+        bytter ut 770 med 777, så du vil da skrive "sudo chmod -R 777 /var/www". Nå vil du kunne putte filene dine inn i
+        html mappen.
+    </p>
+    <img src="Screenshot 2025-01-10 105030.png" alt="">
+    <br>
+
+    <p>Nå må du bli kvitt den andre index filen som allerede er i html mappen så din index fil blir vist.
+        For å gjøre dette skriver du "sudo rm index.nginx-debian.html".
+    </p>
+    <img src="Screenshot 2025-01-10 105252.png" alt="">
+    <br>
+
+    <p>Nettsiden din er nå klar, alt som gjenstår er å starte NginX. Skriv "sudo systemctl start nginx", og når du gjør
+        endringer på nettsiden må du starte NginX om igjen for at endringene skal ta effekt. Da skriver du "sudo systemctl
+        restart nginx".
+    </p>
+    <img src="Screenshot 2025-01-10 105315.png" alt="">
+    <br>
+
     <h2>Valgfritt Steg: Github Importering</h2>
+    <p>VIKTIG: Dette steget er for folk som allerede vet hvordan mann bruker GitHub
+        og har lyst til å lære å bruke det på virtuell maskin.</p>
     <br>
+
+    <p>For å kunne pulle fra GitHub prosjektet ditt på maskinen må du først legge til SSH nøkkelen til maskinen på
+        GitHub brukeren din. Da trenger du først SSH nøkkelen til den virtuelle maskinen ved å skrive "ssh-keygen".
+        Etter å ha trykket enter vil du bli stilt spørsmål. Skriv "yes" på ja/nei spørsmålene og ingenting på resten.
+        Nå skriver du inn "cat /home/[brukernavnet ditt]/.ssh/id_rsa.pub" så vil du bli vist SSH nøkkelen til maskinen
+        i form av en lang rekke med tall og bokstaver i tilleg til "ssh-rsa" som står foran og
+        "[brukernavnet ditt]@[maskinen sitt navn]" etter.
+    </p>
+    <img src="Screenshot 2025-01-10 095905.png" alt="">
+    <img src="Screenshot 2025-01-10 095918.png" alt="">
+    <br>
+
+    <p>Nå på GitHub åpner du dine innstillinger mens du er inne på din nettside sitt git repository.
+        Så går du inn på "SSH and GPG keys" og trykker på "New SSH key". Inne der så skriver du
+        navne du vil gi til nøkkelen(anbefaler noe relatert til maskinen) og skriver inn SSH nøkkelen til din virtuelle maskin,
+        så trykker du "Add SSH key".
+    </p>
+    <img src="Screenshot 2025-01-10 100135.png" alt="">
+    <img src="Screenshot 2025-01-10 100146.png" alt="">
+    <img src="Screenshot 2025-01-10 100153.png" alt="">
+    <img src="Screenshot 2025-01-10 100227.png" alt="">
+    <br>
+
+    <p>Det siste steget før du kan clone/pulle med maskinen er å få linken til repository-et ditt. For å gjøre det så åpner
+        du ditt repository på GitHub og trykker på "Code" knappen, så vil det være en pop-up hvor under ssh fanen så står
+        linken til ditt repository, husk på denne så du kan clone på din virtuelle maskin.
+    </p>
+    <img src="Screenshot 2025-01-10 100259.png" alt="">
+    <img src="Screenshot 2025-01-10 100308.png" alt="">
+    <br>
+
+    <p>Nå for å kunne pulle med din virtuelle maskin trenger den bare å clone repository-et først.
+        For å gjøre dette, gå tilbake til mappen hvor du skulle putte filene til nettsiden din i på(altså /var/www/html).
+        Her skriver du "git clone [linken til repository-et]" og din nettside er nå klar til å publiseres.
+        I tillegg når du når-en du trenger å pulle så skriver du på den virtuelle maskinen mens du er inne på html mappen
+        "git pull".
+    </p>
+
 </body>
 </html>
